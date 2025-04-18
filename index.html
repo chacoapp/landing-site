@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaco - Goal Tracking with Friends</title>
+    <link rel="icon" href="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/chacoicon-light.png" type="image/png">
+    <link rel="shortcut icon" href="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/chacoicon-light.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Theme Colors */
+            --theme-primary-dark: #070707;
+            --theme-secondary-dark: #111111;
+            --theme-tertiary-dark: #1a1a1a;
+            
+            --theme-primary-light: #FFFFFF;
+            --theme-secondary-light: #F4F4F4;
+            --theme-tertiary-light: #e4e4e4;
+            
+            --text-primary-dark: #FFFFFF;
+            --text-secondary-dark: #C5C6CC;
+            --text-tertiary-dark: #D4D6DD;
+            
+            --text-primary-light: #070707;
+            --text-secondary-light: #565656;
+            --text-tertiary-light: #171717;
+            
+            --green-primary: #4b8848;
+            --green-secondary: #65b461;
+            --green-tertiary: #223422;
+            --alert-red: #d55353;
+            --gold: #FFBF00;
+            --gray: #494949;
+            --light-gray: #5b5b5b;
+            --black: #070707;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--theme-primary-light);
+            color: var(--text-primary-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animation Styles */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .stagger-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .stagger-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .stagger-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .stagger-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        .stagger-delay-6 {
+            transition-delay: 0.6s;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 1.5rem 0;
+            background-color: var(--theme-primary-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary-light);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--green-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--theme-primary-dark);
+            color: var(--text-primary-dark);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gray);
+        }
+
+        .btn-secondary {
+            background-color: var(--theme-primary-light);
+            color: var(--text-primary-light);
+            border: 1px solid var(--light-gray);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--theme-secondary-light);
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            padding: 5rem 0;
+            background-color: var(--theme-secondary-light);
+            background-image: radial-gradient(circle at 5% 95%, rgba(28, 188, 20, 0.25) 0%, transparent 100%);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--theme-secondary-light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-badge a {
+            color: var(--green-primary);
+            margin-left: 4px;
+            text-decoration: none;
+        }
+
+        .hero-badge a:hover {
+            text-decoration: underline;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary-light);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary-light);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-hero {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-green {
+            background-color: var(--green-primary);
+            color: var(--white);
+            border: none;
+        }
+
+        .btn-green:hover {
+            background-color: var(--green-secondary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-secondary-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--theme-secondary-light);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary-light);
+        }
+
+        /* Accountability Section */
+        .accountability {
+            padding: 5rem 0;
+            background-color: var(--theme-secondary-light);
+            border-radius: 30px;
+            margin: 4rem 0;
+        }
+
+        .accountability-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .accountability-text {
+            flex: 1;
+        }
+
+        .accountability-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .accountability-text p {
+            color: var(--text-secondary-light);
+            margin-bottom: 2rem;
+        }
+
+        .accountability-image {
+            flex: 1;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .mockup-image {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .accountability-testimonial {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            max-width: 280px;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--green-tertiary);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-secondary-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--theme-primary-dark);
+            color: var(--text-primary-dark);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--text-secondary-dark);
+            font-size: 0.9rem;
+        }
+
+        .emoji-bullet {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .accountability-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for Scroll Progress */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--green-primary);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .header {
+            padding: 1rem 0;
+            background-color: var(--theme-primary-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--theme-tertiary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--green-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <img src="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/textlogo-large-light.png" alt="Chaco Logo">
+            </a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge fade-in">
+                    Chaco is now in public beta! <a href="https://testflight.apple.com/join/bqJPaDcM" target="_blank">Try now →</a>
+                </div>
+                <h1 class="fade-in stagger-delay-1">Track goals. Add stakes. Share progress.</h1>
+                <p class="fade-in stagger-delay-2">Chaco helps you set and track goals with the support of your closest friends—because progress is better together.</p>
+                <div class="hero-cta fade-in stagger-delay-3">
+                    <a  href="https://testflight.apple.com/join/bqJPaDcM" target="_blank" class="btn btn-hero btn-green">Start tracking now!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="fade-in">How Chaco works</h2>
+                <p class="fade-in stagger-delay-1">Simple features designed to help you stick to your goals and create lasting habits with the people you trust.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card fade-in stagger-delay-1">
+                    <div class="feature-icon">✅</div>
+                    <h3>Start Simple</h3>
+                    <p>Track casual habits or ambitious goals: call your parents, cook something new, hit the gym, or write every day. Big or small, it counts.</p>
+                </div>
+                <div class="feature-card fade-in stagger-delay-2">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Get Inspired</h3>
+                    <p>Don't have a goal yet? Browse what your friends are doing and jump in. It's easier to grow when you're not doing it alone.</p>
+                </div>
+                <div class="feature-card fade-in stagger-delay-3">
+                    <div class="feature-icon">📸</div>
+                    <h3>Share Your Journey</h3>
+                    <p>Post quick updates with photos or videos to show progress—just enough to stay honest and inspired.</p>
+                </div>
+                <div class="feature-card fade-in stagger-delay-4">
+                    <div class="feature-icon">💬</div>
+                    <h3>Stay Accountable</h3>
+                    <p>Friends can follow your progress and keep you on track. Whether it's encouragement or a friendly check-in, it's all about support.</p>
+                </div>
+                <div class="feature-card fade-in stagger-delay-5">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Add Stakes</h3>
+                    <p>Set up light consequences if you fall off—like a cringey photo or an email to a friend. It's fun, not scary.</p>
+                </div>
+                <div class="feature-card fade-in stagger-delay-6">
+                    <div class="feature-icon">👥</div>
+                    <h3>Keep It Real</h3>
+                    <p>Chaco isn't about followers or clout. Just invite your close friends, pick who sees each post, and focus on what matters: progress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="accountability" id="how-it-works">
+        <div class="container">
+            <div class="accountability-content">
+                <div class="accountability-text">
+                    <h2 class="fade-in">Accountability that actually works</h2>
+                    <p class="fade-in stagger-delay-1">Research shows that people are 65% more likely to achieve their goals when they make commitments to someone else. Chaco makes this easy by connecting you with the people who matter most—your close friends who genuinely care about your success.</p>
+                    <a href="#features" class="btn btn-green fade-in stagger-delay-2">Learn how it works</a>
+                </div>
+                <div class="accountability-image">
+                    <div class="accountability-testimonial fade-in stagger-delay-3">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">🐢</div>
+                            <div class="testimonial-name">Alex D.</div>
+                        </div>
+                        <p class="testimonial-text">"Having my close friends on Chaco gave me the push I needed. I've been writing daily for 60 days straight!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="about">
+        <div class="container">
+            <h2 class="fade-in">Ready to build better habits?</h2>
+            <p class="fade-in stagger-delay-1">Join our growing community and transform your goals with the power of real social accountability.</p>
+            <a href="https://testflight.apple.com/join/bqJPaDcM" target="_blank" class="btn btn-hero btn-green fade-in stagger-delay-2">Try Chaco</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Chaco 🌳 Grown in Austin, TX</p>
+            <div class="social-links" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+            <a href="#" class="social-icon"></a>
+                <!-- <img src="https://via.placeholder.com/36?text=F" alt="Facebook" style="width: 100%; height: 100%; border-radius: 50%;"> -->
+            </a>
+            <a href="#" class="social-icon">
+                <!-- <img src="https://via.placeholder.com/36?text=T" alt="Twitter" style="width: 100%; height: 100%; border-radius: 50%;"> -->
+            </a>
+            <a href="https://www.linkedin.com/company/chacoapp/" class="social-icon">
+                <!-- <img src="https://via.placeholder.com/36?text=IN" alt="LinkedIn" style="width: 100%; height: 100%; border-radius: 50%;"> -->
+            </a>
+            <a href="#" class="social-icon">
+                <!-- <img src="https://via.placeholder.com/36?text=IG" alt="Instagram" style="width: 100%; height: 100%; border-radius: 50%;"> -->
+            </a></a>
+            </div>  
+        </div>
+        
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll progress bar
+            window.onscroll = function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+            };
+
+            // Animation on scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Immediately animate hero section elements
+            const heroElements = document.querySelectorAll('.hero .fade-in');
+            setTimeout(() => {
+                heroElements.forEach(element => {
+                    element.classList.add('animated');
+                });
+            }, 300);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return; // Skip links with just '#'
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Offset for fixed header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
