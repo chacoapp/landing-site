@@ -341,8 +341,8 @@
 
         .accountability-content {
             display: flex;
-            align-items: center;
-            gap: 4rem;
+            gap: 20px;
+            align-items: flex-start;
         }
 
         .accountability-text {
@@ -360,9 +360,11 @@
         }
 
         .accountability-image {
-            flex: 1;
-            position: relative;
-            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            width: 100%;
         }
 
         .mockup-image {
@@ -372,7 +374,6 @@
         }
 
         .accountability-testimonial {
-            position: absolute;
             bottom: 30px;
             left: 20px;
             background-color: var(--white);
@@ -380,6 +381,13 @@
             border-radius: 12px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
             max-width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1 1 50%;
+        }
+
+        .accountability-testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
 
         .testimonial-header {
@@ -453,6 +461,10 @@
             .accountability-content {
                 flex-direction: column;
                 gap: 2rem;
+            }
+
+            .accountability-image {
+                justify-content: center;
             }
 
             .nav-links {
@@ -601,19 +613,28 @@
         <div class="container">
             <div class="accountability-content">
                 <div class="accountability-text">
-                    <h2 class="fade-in">Accountability that actually works</h2>
+                    <h2 class="fade-in" style="line-height: 1.2;">Accountability that works.</h2>
                     <p class="fade-in stagger-delay-1">Research shows that people are 65% more likely to achieve their
-                        goals when they make commitments to someone else. Chaco makes this easy by connecting you with
-                        the people who matter most—your close friends who genuinely care about your success.</p>
+                        goals when they make commitments to someone else. Chaco makes this easy by keeping you connected
+                        with the people who matter most.</p>
                 </div>
-                <div class="accountability-image">
-                    <div class="accountability-testimonial fade-in stagger-delay-3">
+                <div class="accountability-image" style="display: flex; position: relative; gap: 20px;">
+                    <div class="accountability-testimonial fade-in stagger-delay-3" style=" flex: 1; margin: 0;">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">🐢</div>
                             <div class="testimonial-name">Sai M.</div>
                         </div>
                         <p class="testimonial-text">"Having my close friends on Chaco gave me the push I needed. I've
                             been eating daily for 60 days straight!"</p>
+                    </div>
+
+                    <div class="accountability-testimonial fade-in stagger-delay-4" style="flex: 1; margin: 0;">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">🦁</div>
+                            <div class="testimonial-name">Soham G.</div>
+                        </div>
+                        <p class="testimonial-text">"Chaco helped me finally stick to my workout routine. My friends'
+                            support makes all the difference!"</p>
                     </div>
                 </div>
             </div>
@@ -687,18 +708,20 @@
                 });
             }, 300);
 
-            // Smooth scrolling for anchor links
+            const headerOffset = 120;
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-
                     const targetId = this.getAttribute('href');
-                    if (targetId === '#') return; // Skip links with just '#'
 
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
+                    if (targetId === '#home') {
+                        // Jump all the way to the very top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const targetEl = document.querySelector(targetId);
+                        if (!targetEl) return;
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80, // Offset for fixed header
+                            top: targetEl.offsetTop - headerOffset,
                             behavior: 'smooth'
                         });
                     }
