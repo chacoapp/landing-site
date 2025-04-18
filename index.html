@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaco - Goal Tracking with Friends</title>
-    <link rel="icon" href="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/chacoicon-light.png" type="image/png">
-    <link rel="shortcut icon" href="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/chacoicon-light.png" type="image/png">
+    <link rel="icon" href="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/chacoicon-dark.png"
+        type="image/png">
+    <link rel="shortcut icon" href="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/chacoicon-light.png"
+        type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,19 +16,19 @@
             --theme-primary-dark: #070707;
             --theme-secondary-dark: #111111;
             --theme-tertiary-dark: #1a1a1a;
-            
+
             --theme-primary-light: #FFFFFF;
             --theme-secondary-light: #F4F4F4;
             --theme-tertiary-light: #e4e4e4;
-            
+
             --text-primary-dark: #FFFFFF;
             --text-secondary-dark: #C5C6CC;
             --text-tertiary-dark: #D4D6DD;
-            
+
             --text-primary-light: #070707;
             --text-secondary-light: #565656;
             --text-tertiary-light: #171717;
-            
+
             --green-primary: #4b8848;
             --green-secondary: #65b461;
             --green-tertiary: #223422;
@@ -255,6 +258,7 @@
             background-color: var(--green-primary);
             color: var(--white);
             border: none;
+
         }
 
         .btn-green:hover {
@@ -481,6 +485,7 @@
             top: 0;
             z-index: 100;
         }
+
         .social-icon {
             width: 36px;
             height: 36px;
@@ -493,12 +498,9 @@
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
-
-        .social-icon:hover {
-            background-color: var(--green-primary);
-        }
     </style>
 </head>
+
 <body>
     <!-- Scroll Progress Bar -->
     <div class="progress-container">
@@ -507,128 +509,140 @@
 
     <header class="header">
         <div class="container navbar">
-            <a href="#" class="logo">
-                <img src="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/textlogo-large-light.png" alt="Chaco Logo">
+            <a href="#home" class="logo">
+                <img src="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/textlogo-large-light.png"
+                    alt="Chaco Logo">
             </a>
             <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#about">About</a>
+                <a href="#how-chaco-works">How It Works</a>
+                <a href="#testimonials">Testimonials</a>
             </nav>
         </div>
     </header>
-
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge fade-in">
-                    Chaco is now in public beta! <a href="https://testflight.apple.com/join/bqJPaDcM" target="_blank">Try now →</a>
-                </div>
-                <h1 class="fade-in stagger-delay-1">Track goals. Add stakes. Share progress.</h1>
-                <p class="fade-in stagger-delay-2">Chaco helps you set and track goals with the support of your closest friends—because progress is better together.</p>
+                <h1 class="fade-in stagger-delay-1 gradient-text">Track goals. Add stakes. Share progress.</h1>
+                <p class="fade-in stagger-delay-2">Chaco helps you set and track goals with the support of your closest
+                    friends—because progress is better together.</p>
                 <div class="hero-cta fade-in stagger-delay-3">
-                    <a  href="https://testflight.apple.com/join/bqJPaDcM" target="_blank" class="btn btn-hero btn-green">Start tracking now!</a>
+                    <a href="https://testflight.apple.com/join/bqJPaDcM" target="_blank"
+                        class="btn btn-hero btn-green">Start tracking now!</a>
                 </div>
             </div>
         </div>
     </section>
+    <style>
+        .gradient-text {
+            /* background: linear-gradient(90deg, #072906, #37ba30); */
+            background: linear-gradient(90deg, #0b430a, #37ba30);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 
-    <section class="features" id="features">
+    <section class="how-chaco-works" id="how-chaco-works">
         <div class="container">
             <div class="section-title">
                 <h2 class="fade-in">How Chaco works</h2>
-                <p class="fade-in stagger-delay-1">Simple features designed to help you stick to your goals and create lasting habits with the people you trust.</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card fade-in stagger-delay-1">
                     <div class="feature-icon">✅</div>
                     <h3>Start Simple</h3>
-                    <p>Track casual habits or ambitious goals: call your parents, cook something new, hit the gym, or write every day. Big or small, it counts.</p>
+                    <p>Track casual habits or ambitious goals: call your parents, cook something new, hit the gym, or
+                        write every day. Big or small, it counts.</p>
                 </div>
                 <div class="feature-card fade-in stagger-delay-2">
                     <div class="feature-icon">🌱</div>
                     <h3>Get Inspired</h3>
-                    <p>Don't have a goal yet? Browse what your friends are doing and jump in. It's easier to grow when you're not doing it alone.</p>
+                    <p>Don't have a goal yet? Browse what your friends are doing and jump in. It's easier to grow when
+                        you're not doing it alone.</p>
                 </div>
                 <div class="feature-card fade-in stagger-delay-3">
                     <div class="feature-icon">📸</div>
                     <h3>Share Your Journey</h3>
-                    <p>Post quick updates with photos or videos to show progress—just enough to stay honest and inspired.</p>
+                    <p>Post quick updates with photos or videos to show progress—just enough to stay honest and
+                        inspired.</p>
                 </div>
                 <div class="feature-card fade-in stagger-delay-4">
                     <div class="feature-icon">💬</div>
                     <h3>Stay Accountable</h3>
-                    <p>Friends can follow your progress and keep you on track. Whether it's encouragement or a friendly check-in, it's all about support.</p>
+                    <p>Friends can follow your progress and keep you on track. Whether it's encouragement or a friendly
+                        check-in, it's all about support.</p>
                 </div>
                 <div class="feature-card fade-in stagger-delay-5">
                     <div class="feature-icon">⚡</div>
                     <h3>Add Stakes</h3>
-                    <p>Set up light consequences if you fall off—like a cringey photo or an email to a friend. It's fun, not scary.</p>
+                    <p>Set up light consequences if you fall off—like a cringey photo or an email to a friend. It's fun,
+                        not scary.</p>
                 </div>
                 <div class="feature-card fade-in stagger-delay-6">
                     <div class="feature-icon">👥</div>
                     <h3>Keep It Real</h3>
-                    <p>Chaco isn't about followers or clout. Just invite your close friends, pick who sees each post, and focus on what matters: progress.</p>
+                    <p>Chaco isn't about followers or clout. Just invite your close friends, pick who sees each post,
+                        and focus on what matters: progress.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="accountability" id="how-it-works">
+    <section class="accountability" id="testimonials">
         <div class="container">
             <div class="accountability-content">
                 <div class="accountability-text">
                     <h2 class="fade-in">Accountability that actually works</h2>
-                    <p class="fade-in stagger-delay-1">Research shows that people are 65% more likely to achieve their goals when they make commitments to someone else. Chaco makes this easy by connecting you with the people who matter most—your close friends who genuinely care about your success.</p>
-                    <a href="#features" class="btn btn-green fade-in stagger-delay-2">Learn how it works</a>
+                    <p class="fade-in stagger-delay-1">Research shows that people are 65% more likely to achieve their
+                        goals when they make commitments to someone else. Chaco makes this easy by connecting you with
+                        the people who matter most—your close friends who genuinely care about your success.</p>
+                    <a href="#how-chaco-works" class="btn btn-green fade-in stagger-delay-2">Learn how it works</a>
                 </div>
                 <div class="accountability-image">
                     <div class="accountability-testimonial fade-in stagger-delay-3">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar">🐢</div>
-                            <div class="testimonial-name">Alex D.</div>
+                            <div class="testimonial-name">Sai M.</div>
                         </div>
-                        <p class="testimonial-text">"Having my close friends on Chaco gave me the push I needed. I've been writing daily for 60 days straight!"</p>
+                        <p class="testimonial-text">"Having my close friends on Chaco gave me the push I needed. I've
+                            been eating daily for 60 days straight!"</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section" id="about">
+    <section class="cta-section">
         <div class="container">
             <h2 class="fade-in">Ready to build better habits?</h2>
-            <p class="fade-in stagger-delay-1">Join our growing community and transform your goals with the power of real social accountability.</p>
-            <a href="https://testflight.apple.com/join/bqJPaDcM" target="_blank" class="btn btn-hero btn-green fade-in stagger-delay-2">Try Chaco</a>
+            <p class="fade-in stagger-delay-1">Join our growing community and transform your goals with the power of
+                real social accountability.</p>
+            <a href="https://testflight.apple.com/join/bqJPaDcM" target="_blank"
+                class="btn btn-hero btn-green fade-in stagger-delay-2">Try Chaco</a>
         </div>
     </section>
 
-    <footer>
+    <footer style="background: var(--theme-tertiary-dark)">
         <div class="footer-bottom">
-            <p>&copy; 2025 Chaco 🌳 Grown in Austin, TX</p>
+            <p>&copy; 2025 Chaco 🐢 Raised in Austin, TX</p>
             <div class="social-links" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-            <a href="#" class="social-icon"></a>
-                <!-- <img src="https://via.placeholder.com/36?text=F" alt="Facebook" style="width: 100%; height: 100%; border-radius: 50%;"> -->
-            </a>
-            <a href="#" class="social-icon">
-                <!-- <img src="https://via.placeholder.com/36?text=T" alt="Twitter" style="width: 100%; height: 100%; border-radius: 50%;"> -->
-            </a>
-            <a href="https://www.linkedin.com/company/chacoapp/" class="social-icon">
-                <!-- <img src="https://via.placeholder.com/36?text=IN" alt="LinkedIn" style="width: 100%; height: 100%; border-radius: 50%;"> -->
-            </a>
-            <a href="#" class="social-icon">
-                <!-- <img src="https://via.placeholder.com/36?text=IG" alt="Instagram" style="width: 100%; height: 100%; border-radius: 50%;"> -->
-            </a></a>
-            </div>  
+                <a target="_blank" href="https://www.linkedin.com/company/chacoapp/" class="social-icon">
+                    <img src="https://static.vecteezy.com/system/resources/previews/023/986/970/non_2x/linkedin-logo-linkedin-logo-transparent-linkedin-icon-transparent-free-free-png.png"
+                        alt="LinkedIn" style="width: 105%; height: 105%; border-radius: 50%;">
+                </a>
+                <a target="_blank" href="https://www.instagram.com/chacoapp/" class="social-icon">
+                    <img src="https://static.vecteezy.com/system/resources/previews/042/148/632/non_2x/instagram-logo-instagram-social-media-icon-free-png.png"
+                        alt="Instagram" style="width: 130%; height: 130%; border-radius: 50%;">
+                </a></a>
+            </div>
         </div>
-        
+
     </footer>
 
     <script>
         // Intersection Observer for animations
         document.addEventListener('DOMContentLoaded', () => {
             // Scroll progress bar
-            window.onscroll = function() {
+            window.onscroll = function () {
                 const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
                 const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 const scrolled = (winScroll / height) * 100;
@@ -663,15 +677,15 @@
                     element.classList.add('animated');
                 });
             }, 300);
-            
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return; // Skip links with just '#'
-                    
+
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
@@ -684,4 +698,5 @@
         });
     </script>
 </body>
+
 </html>
