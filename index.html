@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+    <script>
+
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaco - Goal Tracking with Friends</title>
@@ -595,7 +605,6 @@
                     <p class="fade-in stagger-delay-1">Research shows that people are 65% more likely to achieve their
                         goals when they make commitments to someone else. Chaco makes this easy by connecting you with
                         the people who matter most—your close friends who genuinely care about your success.</p>
-                    <a href="#how-chaco-works" class="btn btn-green fade-in stagger-delay-2">Learn how it works</a>
                 </div>
                 <div class="accountability-image">
                     <div class="accountability-testimonial fade-in stagger-delay-3">
