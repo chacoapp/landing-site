@@ -1,0 +1,114 @@
+.accountability {
+    padding: 5rem 0;
+    background-color: var(--theme-secondary-light);
+    border-radius: 30px;
+    margin: 4rem 0;
+}
+
+.accountability-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.accountability-text {
+    flex: 1;
+}
+
+.accountability-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.accountability-text p {
+    color: var(--text-secondary-light);
+    margin-bottom: 2rem;
+}
+
+.accountability-image {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.mockup-image {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.accountability-testimonial {
+    bottom: 30px;
+    left: 20px;
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    max-width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 50%;
+}
+
+.accountability-testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--theme-tertiary-dark);
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.testimonial-name {
+    font-weight: 600;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--text-secondary-light);
+}
+
+/* Mobile-specific styles */
+@media (max-width: 480px) {
+    .accountability-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .accountability-testimonial {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    .accountability-image {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .accountability-text h2 {
+        font-size: 2rem;
+    }
+    .accountability-text p {
+        font-size: 0.9rem;
+    }
+
+    .testimonial-text {
+        font-size: 0.9rem;
+    }
+}
