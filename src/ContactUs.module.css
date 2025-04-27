@@ -70,7 +70,7 @@
 }
 
 .email-link:hover {
-    color: var(--primary-dark);
+    color: var(--green-primary);
     text-decoration: underline;
 }
 

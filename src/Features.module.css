@@ -29,6 +29,8 @@
     border-radius: 16px;
     padding: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(0);
+    /* Add this line */
 }
 
 .feature-card:hover {

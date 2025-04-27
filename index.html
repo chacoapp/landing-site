@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+    <script>
+
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png"
         href="https://goalapp-public.s3.us-east-2.amazonaws.com/assets/chacoicon-dark.png" />
