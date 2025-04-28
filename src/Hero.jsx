@@ -24,7 +24,7 @@ function Hero() {
           </p>
           <div className={`hero-cta fade-in stagger-delay-3 ${styles['hero-cta']}`}>
             <a
-              href="https://testflight.apple.com/join/bqJPaDcM"
+              href="https://apps.apple.com/us/app/chaco-goal-tracking/id6740173414"
               target="_blank"
               className="btn btn-hero btn-green"
             >
