@@ -33,7 +33,7 @@ function CTASection() {
           social accountability.
         </p>
         <a
-          href="https://testflight.apple.com/join/bqJPaDcM"
+          href="https://apps.apple.com/us/app/chaco-goal-tracking/id6740173414"
           target="_blank"
           className="btn btn-hero btn-green fade-in stagger-delay-2"
         >
