@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css'; // if you have styles
+import ChacoConcept from './chacoConcept';
+import './index.css';   // ← this must point here
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <App />
+        <ChacoConcept />
     </React.StrictMode>
 );

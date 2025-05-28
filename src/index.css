@@ -1,182 +1,365 @@
-:root {
-    /* Theme Colors */
-    --theme-primary-dark: #070707;
-    --theme-secondary-dark: #111111;
-    --theme-tertiary-dark: #1a1a1a;
-
-    --theme-primary-light: #FFFFFF;
-    --theme-secondary-light: #F4F4F4;
-    --theme-tertiary-light: #e4e4e4;
-
-    --text-primary-dark: #FFFFFF;
-    --text-secondary-dark: #C5C6CC;
-    --text-tertiary-dark: #D4D6DD;
-
-    --text-primary-light: #070707;
-    --text-secondary-light: #565656;
-    --text-tertiary-light: #171717;
-
-    --green-primary: #4b8848;
-    --green-secondary: #65b461;
-    --green-tertiary: #223422;
-    --alert-red: #d55353;
-    --gold: #FFBF00;
-    --gray: #494949;
-    --light-gray: #5b5b5b;
-    --black: #070707;
-    --white: #FFFFFF;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+@import "tailwindcss";
 
 body {
-    background-color: var(--theme-primary-light);
-    color: var(--text-primary-light);
-    line-height: 1.6;
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* Layer 1: Custom Theme & Color Utilities */
+@layer utilities {
+  .bg-theme-primary {
+    background-color: #070707;
+  }
+
+  .bg-theme-secondary {
+    background-color: #111111;
+  }
+
+  .bg-theme-tertiary {
+    background-color: #1A1A1A;
+  }
+
+  .text-text-primary {
+    color: #FFFFFF;
+  }
+
+  .text-text-secondary {
+    color: #C5C6CC;
+  }
+
+  .text-text-tertiary {
+    color: #D4D6DD;
+  }
+
+  .border-theme-primary {
+    border-color: #070707;
+  }
+
+  .border-theme-secondary {
+    border-color: #111111;
+  }
+
+  .border-theme-tertiary {
+    border-color: #1A1A1A;
+  }
+
+  .bg-green-primary {
+    background-color: #4b8848;
+  }
+
+  .bg-green-secondary {
+    background-color: #65b461;
+  }
+
+  .bg-green-tertiary {
+    background-color: #223422;
+  }
+
+  .text-green-primary {
+    color: #4b8848;
+  }
+
+  .text-green-secondary {
+    color: #65b461;
+  }
+
+  .text-green-tertiary {
+    color: #223422;
+  }
+
+  .bg-alert-red {
+    background-color: #D55353;
+  }
+
+  .text-alert-red {
+    color: #D55353;
+  }
+
+  .bg-gold {
+    background-color: #FFBF00;
+  }
+
+  .text-gold {
+    color: #FFBF00;
+  }
+
+  .bg-gray-custom {
+    background-color: #494949;
+  }
+
+  .text-gray-custom {
+    color: #494949;
+  }
+
+  .bg-light-gray {
+    background-color: #5B5B5B;
+  }
+
+  .text-light-gray {
+    color: #5B5B5B;
+  }
+
+  .text-black {
+    /* Note: Tailwind has a default .text-black. This overrides it if #070707 is different from Tailwind's default black. */
+    color: #070707;
+  }
+
+  .bg-black {
+    /* Note: Tailwind has a default .bg-black. This overrides it if #070707 is different from Tailwind's default black. */
+    background-color: #070707;
+  }
+
+  .text-white {
+    /* Note: Tailwind has a default .text-white. This is fine if #FFFFFF is the same. */
+    color: #FFFFFF;
+  }
+
+  .bg-white {
+    /* Note: Tailwind has a default .bg-white. This is fine if #FFFFFF is the same. */
+    background-color: #FFFFFF;
+  }
 }
 
-/* Animation Styles */
-.fade-in {
+/* Layer 2: Component, Layout & Animation Utilities */
+@layer utilities {
+
+  /* Logo Animation */
+  .logo-wrapper {
+    position: absolute;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    max-width: 250px;
+    z-index: 50;
+    transition: all 1s ease;
+  }
+
+  .logo-fade-out {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+
+  .logo-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Hero Content Animation */
+  .hero-content {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+    transition: all 1s ease;
+  }
 
-.fade-in.animated {
+  .hero-content-fade-in {
     opacity: 1;
     transform: translateY(0);
-}
+  }
 
-.stagger-delay-1 {
-    transition-delay: 0.1s;
-}
+  /* Subtle Gradient Animation */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
 
-.stagger-delay-2 {
-    transition-delay: 0.2s;
-}
+    50% {
+      background-position: 100% 50%;
+    }
 
-.stagger-delay-3 {
-    transition-delay: 0.3s;
-}
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
-.stagger-delay-4 {
-    transition-delay: 0.4s;
-}
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
 
-.stagger-delay-5 {
-    transition-delay: 0.5s;
-}
-
-.stagger-delay-6 {
-    transition-delay: 0.6s;
-}
-
-.btn {
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
+  /* Stacked Cards Showcase */
+  .stacked-showcase {
+    position: relative;
+    padding: 20px;
+    background: linear-gradient(180deg,
+        rgba(75, 136, 72, 0.12) 0%,
+        rgba(75, 136, 72, 0.06) 100%);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(75, 136, 72, 0.15);
     transition: all 0.3s ease;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
+  }
 
-.btn-primary {
-    background-color: var(--theme-primary-dark);
-    color: var(--text-primary-dark);
-    border: none;
-}
+  .stacked-showcase:hover {
+    border-color: rgba(75, 136, 72, 0.25);
+    background: linear-gradient(180deg,
+        rgba(75, 136, 72, 0.15) 0%,
+        rgba(75, 136, 72, 0.08) 100%);
+  }
 
-.btn-primary:hover {
-    background-color: var(--gray);
-}
+  .stacked-container {
+    position: relative;
+    height: 620px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.btn-secondary {
-    background-color: var(--theme-primary-light);
-    color: var(--text-primary-light);
-    border: 1px solid var(--light-gray);
-}
+  .stacked-cards {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+  }
 
-.btn-secondary:hover {
-    background-color: var(--theme-secondary-light);
-}
+  /* Habit tiles specific styles */
+  .stacked-showcase:first-child .stacked-cards {
+    width: 620px;
+  }
 
-.btn-hero {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-}
+  /* Post tiles specific styles */
+  .stacked-showcase:last-child .stacked-cards {
+    width: 300px;
+  }
 
-.btn-green {
-    background-color: var(--green-primary);
-    color: var(--white);
-    border: none;
-}
+  .stacked-card {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
 
-.btn-green:hover {
-    background-color: var(--green-secondary);
-}
+  .stacked-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
 
-.title-gradient {
-    background: linear-gradient(90deg, #0b430a, #37ba30);
+  .stacked-card:hover img {
+    transform: scale(1.01);
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.25);
+  }
+
+  .stacked-card.active {
+    transform: translate(-50%, -50%) scale(1.1);
+    z-index: 3;
+    opacity: 1;
+  }
+
+  .stacked-card.next {
+    transform: translate(-50%, -50%) translateX(60%) scale(0.9) rotateY(-20deg);
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  .stacked-card.prev {
+    transform: translate(-50%, -50%) translateX(-60%) scale(0.9) rotateY(20deg);
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  .stacked-card:not(.active):not(.next):not(.prev) {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #1d1d1d;
+  }
+
+  /* Habit tiles specific styles */
+  .stacked-showcase:first-child .card-inner {
+    background-color: #1d1d1d;
+  }
+
+  /* Post tiles specific styles */
+  .stacked-showcase:last-child .card-inner {
+    background-color: #070707;
+  }
+
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(75, 136, 72, 0.3);
+    border: 1px solid rgba(75, 136, 72, 0.4);
+    color: #65b461;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-button:hover {
+    background: rgba(75, 136, 72, 0.4);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .prev-button {
+    left: 15px;
+  }
+
+  .next-button {
+    right: 15px;
+  }
+
+  /* Section Transitions */
+  section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(75, 136, 72, 0.2) 50%,
+        transparent 100%);
+  }
+
+  /* Feature Card Styles */
+  .feature-card {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(to right, #4b8848, #65b461);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.heading-gradient {
-    background: linear-gradient(90deg, #000000, #7a7979);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .accountability-content {
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .accountability-testimonial {
-        flex: 1 1 100%;
-        max-width: 100%;
-        margin: 10px 0;
-    }
-
-    .accountability-image {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .nav-links {
-        font-size: small;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-cta {
-        flex-direction: column;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .btn-hero {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-    }
+    background-clip: text;
+    color: transparent;
+  }
 }
