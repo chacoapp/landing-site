@@ -1,0 +1,12 @@
+
+
+{
+  "applinks": {
+    "details": [
+      {
+        "appID": "QMZAK2ZUV7.YOUR_BUNDLE_ID",
+        "paths": [ "/posts/*", "/some-other-path/*", "*" ]
+      }
+    ]
+  }
+}
