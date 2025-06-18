@@ -5,7 +5,7 @@
     "details": [
       {
         "appID": "QMZAK2ZUV7.com.chaco.ios",
-        "paths": [ "/posts/*", "/some-other-path/*", "*" ]
+        "paths": [ "/posts/*", "/some-other-path/*", "*", "", "/posts", "posts", "posts/" ]
       }
     ]
   }
